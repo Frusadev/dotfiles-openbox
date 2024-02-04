@@ -1,0 +1,11 @@
+1- create the listening variable for wifi.
+2- create the scale for luminosity and volume
+3- add the four power buttons to ctpanel
+-------------------------------------------------------
+------------------------------------------------
+----------------------------------
+------------------
+---------
+----
+_______
+create a window called mpanel that will be opened when the user has and so when i'll reach the new line, i hope it will be done the way to do  
