@@ -1,0 +1,95 @@
+(include "modules/panel/workspaces.yuck")
+
+(defwindow bar
+  :class "bar"
+  :geometry (geometry
+    :width "100%"
+    :height "6.5%"
+  )
+  :windowtype "dock"
+  
+  (box
+    :class "bar-content"
+    :spacing 10
+    :halign "start"
+    :width screen_width
+    :height 40
+    :orientation "h"
+    :space-evenly "false"
+    :hexpand "false"
+    
+    (centerbox
+      :width screen_width
+      ;;launcher
+      (box
+        :space-evenly "false"
+        (box
+        :orientation "h"
+        :halign "start"
+        :space-evenly "false"
+        :width "30"
+        (button 
+          :width 25
+          :height 25
+          :class "launcher-btn"
+          :onclick "bash modules/scripts/launcher.sh &"
+          (image :path "modules/data/icons8-arch-linux-48@4x.png"
+                 :image-height 20
+                 :image-width 20
+          )
+        )
+      )
+      ;; datetime & internet
+      (box 
+        :class "dt-container"
+        :space-evenly "false"
+        :spacing "10"
+        :halign "start"
+        (label :class "text-normal"
+               :text "${date}"
+        )
+        (label :class "text-normal"
+               :text time
+        )
+        (box 
+          (image
+            :path {
+              battery_status_cmd == "Charging," ? "modules/data/SVG/charging-icon.svg" :
+              battery >= 60 ? "modules/data/battery-level-full-icon@4x.png" :
+              battery >= 21 ? "modules/data/SVG/battery-medium-icon.svg" :
+              battery <= 20 ? "modules/data/SVG/battery-low-icon.svg" : "modules/data/SVG/battery-low-icon.svg"
+            }
+            :image-height "25"
+            :image-width "25"
+          )
+          (label
+           :text "${battery}%"
+           :class "text-normal"
+          )
+        )
+      )
+    )
+  
+      
+    (workspaces)
+      
+      
+      ;; ctpanel
+      (box
+        :space-evenly "false"
+        :halign "end"
+        :width 40
+        (button 
+          :width 25
+          :height 25
+          :onclick "eww open ctpanel &"
+          :class "ctl-btn"
+          (image :path "modules/data/adjust-control-icon@4x.png"
+                  :image-height 20
+                  :image-width 20
+          )
+        )
+      )
+    )
+  )
+)
