@@ -3,10 +3,14 @@ import os
 
 
 def write_data() -> str:
-    cmd: str = "dunstctl history > history.json"
+    cmd: str = (
+        "dunstctl history > ~/.config/eww/modules/scripts/notification/history.json"
+    )
     os.system(f"cd . && {cmd}")
     content: str = ""
-    with open("history.json", "r+") as history:
+    with open(
+        "/home/frusadev/.config/eww/modules/scripts/notification/history.json", "r+"
+    ) as history:
         y = history.readlines()
         for s in y:
             content = content + s
@@ -19,7 +23,9 @@ def write_data() -> str:
 def parse_data() -> str:
     data = {}
     # Load the json data
-    with open("history.json", "r+") as history:
+    with open(
+        "/home/frusadev/.config/eww/modules/scripts/notification/history.json", "r+"
+    ) as history:
         data = json.load(history)
     # Construct the yuck output
     """The yuck output will be presented like this:
@@ -36,10 +42,10 @@ def parse_data() -> str:
         app_name = notification["appname"]["data"]
         yuck_output = (
             yuck_output
-            + f'(notif :title "{title}" :content "{content}" :id {id} :app_name {app_name} )'
+            + f'(notif :title "{title}" :content "{content}" :id {id} :app_name "{app_name}" )'
         )
-    return yuck_output
+    return "(box :orientation 'v' :space-evenly 'false' :spacing 0 " + yuck_output + ")"
 
 
-print(write_data())
+write_data()
 print(parse_data())

@@ -108,16 +108,29 @@
           )
         )
       )
+      (label
+        :class "notif-gr-title"
+        :halign "start"
+        :text "Notifications"
+      )
       (box
         :class "not-sh"
         :orientation "v"
         :space-evenly "false"
         :halign "start"
-        (box
-          :class "sh"
-          :orientation "v"
-          :space-evenly "true"
-          (notif :title "none" :id "0" :app_name "me" :content "you're fucking")
+        :height 100
+        
+        (scroll
+          :vscroll "true"
+          :height 300
+          :width 260
+          :hscroll "false"
+          :hexpend "false"
+          :halign "start"
+          (literal
+            :halign "start"
+            :content notifications_val
+          )
         )
       )
     )

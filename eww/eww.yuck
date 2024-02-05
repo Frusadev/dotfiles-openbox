@@ -11,6 +11,11 @@
   `echo $USER | tr '[:lower:]' '[:upper:]'`
 )
 
+(defpoll notifications_val :interval "1s"
+  :initial ""
+  `python /home/frusadev/.config/eww/modules/scripts/notification/list.py &`
+)
+
 (defpoll cpu :interval "1s"
   :initial "N/A"
   `top -b -n 1 | grep '%Cpu(s):' | awk '{print $2}'`
