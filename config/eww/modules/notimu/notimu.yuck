@@ -107,6 +107,13 @@
             )
           )
         )
+        (box :orientation "h"
+          :halign "center"
+          :height 30
+          (label
+            :text cava
+          )
+        )
       )
       (label
         :class "notif-gr-title"

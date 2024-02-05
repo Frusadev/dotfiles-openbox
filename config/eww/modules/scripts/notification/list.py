@@ -44,7 +44,11 @@ def parse_data() -> str:
             yuck_output
             + f'(notif :title "{title}" :content "{content}" :id {id} :app_name "{app_name}" )'
         )
-    return "(box :orientation 'v' :space-evenly 'false' :spacing 0 " + yuck_output + ")"
+    return (
+        "(box :orientation 'v' :space-evenly 'false' :spacing 0 " + yuck_output + ")"
+        if not yuck_output == ""
+        else '(label :text "No notifications 󱏧" :valign "center" :halign "center" :class "no-notf")'
+    )
 
 
 write_data()

@@ -11,8 +11,14 @@
   `echo $USER | tr '[:lower:]' '[:upper:]'`
 )
 
-(defpoll notifications_val :interval "1s"
+(deflisten cava
+  :interval "1s"
   :initial ""
+  `bash ~/.config/eww/modules/scripts/cava.sh`
+)
+
+(defpoll notifications_val :interval "1s"
+  :initial "No notifications"
   `python /home/frusadev/.config/eww/modules/scripts/notification/list.py &`
 )
 
