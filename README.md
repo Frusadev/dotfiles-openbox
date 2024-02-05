@@ -1,7 +1,7 @@
 # dotfiles-openbox
 A sweet cappucin openbox customization
 
-![Kaza](https://github.com/Frusadev/dotfiles-openbox/assets/81917636/4e0ad903-c1e2-4f26-a10d-acf2097dabf2)
+![dtf-ob-screenshot](https://github.com/Frusadev/dotfiles-openbox/assets/81917636/312d88d9-2be2-443c-81fa-93cdbfb291dd)
 
 ## Warning
 !!! This is still under developement. !!!
