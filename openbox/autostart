@@ -1,6 +1,0 @@
-sleep 2 &&
-feh --bg-fill "/home/frusadev/.config/openbox/wallp/heart.jpg" &&
-picom &
-eww open bar &
-lxpolkit &
-dunst &
