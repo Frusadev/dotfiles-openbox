@@ -1,0 +1,28 @@
+@import "./date.scss";
+@import "./acwid.scss";
+
+$bg-dim: #1e1e2e;
+$bg-0: #313244;
+$bg-red-dark: #f38ba8;
+$red-accent: #eba0ac;
+$fg: #cdd6f4;
+$orange-accent: #fab387;
+$yellow-accent: #f9e2af;
+$aqua-accent: #89b4fa;
+$gray-2: #9399b2;
+$purple-accent: #45475a;
+$gray-1: #A6B0A4;
+$bg-2: #585b70;
+$bg-green: #a6e3a1;
+$blue-accent: #74c7ec;
+$shadow: rgba(0, 0, 0, 0.60);
+
+.ctpanel {
+  background-color: transparent;
+}
+
+.dateview-box {
+  background-color: $bg-dim;
+  box-shadow: 1 1 .3rem .1rem $shadow;
+  border-radius: 1.5rem;
+}

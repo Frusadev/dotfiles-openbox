@@ -1,0 +1,37 @@
+(defwidget DateView[]
+  (box
+    :halign "start"
+    :width 200
+    :valign "start"
+    :orientation "h"
+    :spacing "-90"
+    :height 50
+    :class "dateview-root"
+    (box
+      (image
+        :path logo
+        :image-height 100
+        :image-width 100
+        :halign "start"
+        :valign "start"
+        :width 100
+      )
+    )
+    (box
+      :orientation "v"
+      :spacing "10"
+      :valign "start"
+      :class "date-value"
+      (label
+        :class "date-text"
+        :text time
+        :halign "start"
+      )
+      (label
+        :halign "start"
+        :class "date-text"
+        :text date
+      )
+    )
+  )
+)

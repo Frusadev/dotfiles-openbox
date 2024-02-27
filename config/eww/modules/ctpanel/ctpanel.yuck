@@ -1,14 +1,48 @@
-(include "modules/ctpanel/ctpanel_wid.yuck")
+(include "modules/ctpanel/date.yuck")
+(include "modules/ctpanel/acwid.yuck")
+
 
 (defwindow ctpanel
-  :geometry (geometry 
-    :height "90%"
-    :width "32%"
-    :x "69%"
-    :y "7%"
-    :windowtype "normal"
-    :class "ctpanel"
-    :space-evenly "false"
+  :geometry (geometry
+              :height "90%"
+              :width "40%"
+              :x "58%"
+              :y "66"
+              :stacking "bg"
+            )
+  :class "ctpanel"
+  (eventbox
+    :onhoverlost { dialog_openned == false ? "eww close ctpanel &" : ""}
+    :height {round(screen_height*90/100, 0)}
+    (box
+      :class "ctpanel-content"
+      :orientation "v"
+      :spacing 0
+      :halign "center"
+      :valign "center"
+      :height {round(screen_height*88/100, 0)}
+      :width {round(screen_width*38/100, 0)}
+      :space-evenly "false"
+      ;; Date
+      ;; Action widgets (wifi, bt...)
+      (box
+        :orientation "h"
+        :space-evenly "false"
+        :halign "end"
+        :valign "start"
+        (box
+          :class "dateview-box"
+          :orientation "h"
+          :height {round(screen_height*15/100, 0)}
+          :width 380
+          (DateView)
+        )
+      )
+      (box
+        :space-evenly "true"
+        :class "action-widgets-box"
+        (action-widgets)
+      )
+    )
   )
-  (ctpanel_wid)
 )

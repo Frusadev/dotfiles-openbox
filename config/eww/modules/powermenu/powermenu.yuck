@@ -1,0 +1,18 @@
+(defwindow powerm
+  :class "powerm"
+  :geometry (geometry
+              :width "28%"
+              :height "18%"
+              :anchor "center"
+            )
+  :stacking "fg"
+  :windowtype "dock"
+  (box
+    :orientation "h"
+    :space-evenly "true"
+    (button :class "lock-btn" :onclick "betterlockscreen --lock &" "" )
+    (button :class "suspend-btn" :onclick "systemctl suspend &" "󰒲" )
+    (button :class "reboot-btn" :onclick "bash ~/.config/eww/modules/scripts/reboot.sh &" "󰜉" )
+    (button :class "sd-btn" :onclick "bash ~/.config/eww/modules/scripts/shutdown.sh &" "" )
+  )
+)

@@ -1,0 +1,214 @@
+(defwidget action-widgets[]
+  (box
+    :class "action-widgets-root"
+    :orientation "v"
+    :space-evenly "false"
+    :width 350
+    :halign "end"
+    (box
+      :orientation "h"
+      :space-evenly "false"
+      :halign "center"
+      :spacing 18
+      :class "action-btn-container"
+      (action-btn
+        :icon ""
+        :toggled wifi_toggled
+        :action {wifi_toggled == "true" ? "nmcli radio wifi off &" : "nmcli radio wifi on & nmcli radio all on &"}
+        ;; :content "eww update dialog_openned='true' && eww open acdialog_wifi &"
+        :content "bash ~/.config/eww/modules/scripts/imported/rofi-network-manager/rofi-network-manager.sh &"
+      )
+      (action-btn
+        :icon "󰂯"
+        :toggled bluetooth_toggled
+        :action {bluetooth_toggled == "true" ? "rfkill block bluetooth &" : "rfkill unblock bluetooth &"}
+        :content bt_list
+      )
+    )
+    (box
+      :class "action-btn-container"
+      :orientation "h"
+      :halign "center"
+      :space-evenly "false"
+      :spacing 18
+      (toggle-btn
+        :icon ""
+        :toggled hotspot_toggled
+        ;; :action "nmcli device wifi hotspot ssid MyWifi password C0d3&$ecur3 &"
+        :action {hotspot_toggled == "true" ? "nmcli connection down Hotspot &" : "nmcli device wifi hotspot ssid MyWifi password C0d3ecur3 &"}
+      )
+
+      (toggle-btn
+        :icon "󰀝"
+        :toggled planemode_toggled
+        :action {planemode_toggled == "true" ? "nmcli radio all on &" : "nmcli radio all off &"}
+      )
+    )
+    (box
+      :orientation "h"
+      :space-evenly "false"
+      :halign "start"
+      :spacing 18
+      :class "action-btn-container lonely-toggle-btn"
+      (toggle-btn
+        :icon "󱩌"
+        :toggled night_light_toggled
+        :action {night_light_toggled == "true" ? "redshift -x & eww update night_light_toggled=\"false\"" : "redshift -O 2000 & eww update night_light_toggled=\"true\""}
+      )
+    )
+    (volume-scale)
+    (brightness-scale)
+    (stats)
+    (powerbtn)
+  )
+)
+
+(defwidget action-btn[icon toggled action content]
+  (box
+    :class "action-btn-root"
+    :height 50
+    :width 150
+    :orientation "h"
+    :space-evenly "false"
+    :spacing 0
+    (button
+      :class {toggled == "true" ? "action-btn action-btn-toggled" : "action-btn" }
+      :width 100
+      :onclick action
+      (label
+        :class {toggled == "true" ? "action-btn-icon-toggled" : "action-btn-icon" }
+        :text icon
+      )
+    )
+    (box
+      :width 1
+      :halign "start"
+      :height 20
+      :class "action-btn-separator"
+      :space-evenly "false"
+    )
+    (button
+      :width 50
+      :halign "start"
+      :onclick content
+      :class {toggled == "true" ? "action-btn-open-toggled" : "action-btn-open" }
+      (label
+        :class {toggled == "true" ? "action-btn-icon-toggled" : "action-btn-icon" }
+        :text ""
+      )
+    )
+  )
+)
+
+(defwidget toggle-btn[toggled action icon]
+  (box
+    :class "action-btn-root"
+    :height 50
+    :width 150
+    :orientation "h"
+    :space-evenly "true"
+    :spacing 0
+    (button
+      :class {toggled == "true" ? "toggle-btn toggle-btn-toggled" : "toggle-btn" }
+      :width 100
+      :onclick action
+      (label
+        :class {toggled == "true" ? "action-btn-icon-toggled" : "action-btn-icon" }
+        :text icon
+      )
+    )
+  )
+)
+
+(defwidget volume-scale []
+  (box
+    :orientation "v"
+    :space-evenly "false"
+    :spacing 8
+    (label
+      :halign "start"
+      :class "volume-scale-icon"
+      :text ""
+    )
+    (box
+      :orientation "h"
+      :halign "start"
+      :class "volume-scale-root"
+      (scale
+        :class "volume-scale"
+        :value vol
+        :onchange `amixer -D pulse sset Master {}% &`
+        :max 100
+        :min 0
+        :width 300
+      )
+    )
+  )
+)
+
+(defwidget brightness-scale []
+  (box
+    :orientation "v"
+    :space-evenly "false"
+    :spacing 8
+    (label
+      :halign "start"
+      :class "brightness-scale-icon"
+      :text ""
+    )
+    (box
+      :orientation "h"
+      :halign "start"
+      :class "brightness-scale-root"
+      (scale
+        :class "brightness-scale"
+        :value brightness_value
+        :onchange `brightnessctl set {}% &`
+        :max 100
+        :width 300
+        :min 1
+      )
+    )
+  )
+)
+
+(defwidget stats[]
+  (box
+    :orientation "h"
+    :space-evenly "false"
+    :halign "center"
+    :class "stats"
+    :spacing 10
+    (label :class "cpu-title stat-title" :text "󰻠: ")
+    (label :class "cpu-val stat-val" :text "${cpu}%")
+    (label :class "memory-title stat-title" :text "󰍛: ")
+    (label :class "memory-val stat-val" :text "${mem}%")
+    (label :class "battery-title stat-title" :text ":")
+    (label :class "battery-val stat-val" :text "${battery}%")
+    (label
+      :text " ${round(EWW_NET['wlan0'].NET_DOWN / 1048576, 0)}Mb"
+      :class "stat-val net-down"
+    )
+          
+    (label
+      :text " ${round(EWW_NET['wlan0'].NET_UP / 1048576, 0)}Mb"
+      :class "stat-val net-up"
+    )
+  )
+)
+
+(defwidget powerbtn[]
+  (box
+    :orientation "h"
+    :space-evenly "true"
+    :halign "center"
+    :class "powerbtn-root"
+    (button
+      :class "powerbtn"
+      :width 70
+      :height 30
+      :onclick "eww open powerm &"
+      ""
+    )
+  )
+)

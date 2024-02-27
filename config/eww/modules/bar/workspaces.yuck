@@ -1,0 +1,12 @@
+(defwidget workspaces[]
+  (box
+    :space-evenly "true"
+    :spacing 5
+    :class "workspaces"
+    (button :class "workspace-btn" :onclick "wmctrl -s 0 &" :width 20 :height 20 (label :text "" :class "workspaces-icon"))
+    (button :class "workspace-btn" :onclick "wmctrl -s 1 &" :width 20 :height 20 (label :text "" :class "workspaces-icon"))
+    (button :class "workspace-btn" :onclick "eww open notif &" :width 20 :height 20 (label :text "" :class "workspaces-icon"))
+    (button :class "workspace-btn" :onclick "wmctrl -s 2 &" :width 20 :height 20 (label :text "" :class "workspaces-icon"))
+    (button :class "workspace-btn" :onclick "wmctrl -s 3 &" :width 20 :height 20 (label :text "" :class "workspaces-icon"))
+  )
+)

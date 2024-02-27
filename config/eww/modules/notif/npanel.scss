@@ -1,0 +1,9 @@
+.npanel {
+  background: transparent;
+  .npanel-root {
+    background: $bg-dim;
+    margin: 1rem;
+    box-shadow: 0 0 .3rem .1rem $shadow;
+    border-radius: 2rem;
+  }
+}

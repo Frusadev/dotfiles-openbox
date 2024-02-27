@@ -28,10 +28,6 @@ def parse_data() -> str:
     ) as history:
         data = json.load(history)
     # Construct the yuck output
-    """The yuck output will be presented like this:
-
-        (notif :title "title" :content "Content" :time "time")
-    """
     notifications = data["data"][0]
     yuck_output = ""
 
@@ -39,15 +35,18 @@ def parse_data() -> str:
         title: str = notification["summary"]["data"]
         content: str = notification["body"]["data"]
         id = notification["id"]["data"]
-        app_name = notification["appname"]["data"]
         yuck_output = (
             yuck_output
-            + f'(notif :title "{title}" :content "{content}" :id {id} :app_name "{app_name}" )'
+            + f'(notification :id {id} :title "{title}" :content "{content}")\n'
         )
     return (
-        "(box :orientation 'v' :space-evenly 'false' :spacing 0 " + yuck_output + ")"
-        if not yuck_output == ""
-        else '(label :text "No notifications 󱏧" :valign "center" :halign "center" :class "no-notf")'
+        """(box
+            :orientation "v"
+            :space-evenly "false"
+            :spacing 10
+        """ +
+        yuck_output +
+        ")"
     )
 
 

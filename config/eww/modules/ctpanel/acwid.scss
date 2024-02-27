@@ -1,0 +1,208 @@
+@import "./acdialog.scss";
+
+$bg-dim: #1e1e2e;
+$bg-0: #313244;
+$bg-red-dark: #f38ba8;
+$red-accent: #eba0ac;
+$fg: #cdd6f4;
+$orange-accent: #fab387;
+$yellow-accent: #f9e2af;
+$aqua-accent: #89b4fa;
+$gray-2: #9399b2;
+$purple-accent: #45475a;
+$gray-1: #A6B0A4;
+$bg-2: #585b70;
+$bg-green: #a6e3a1;
+$crust: #11111b;
+$blue-accent: #74c7ec;
+$shadow: rgba(0, 0, 0, 0.60);
+$main-font: "MartianMono Nerd Font";
+
+.action-btn {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  font-size: 25;
+}
+
+.action-btn-icon {
+  font-family: $main-font;
+  color: $fg;
+}
+
+.action-btn-icon-toggled {
+  font-family: $main-font;
+  color: $bg-dim;
+}
+
+.action-btn-root {
+  border-radius: 2rem;
+  background-color: $bg-0;
+}
+
+.action-btn:hover {
+  border-radius: 2rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.action-btn:active {
+  border-radius: 2rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.action-btn-separator {
+  background-color: $bg-2;
+}
+
+.action-btn-open {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  background-color: $bg-0;
+}
+
+.action-btn-open-toggled {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  background-color: $aqua-accent;
+}
+
+.action-btn-toggled {
+  border-radius: 2rem;
+  background-color: $aqua-accent;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.action-widgets-root {
+  background-color: $bg-dim;
+  border-radius: 1.5rem;
+  box-shadow: 0 0 .3rem .1rem $shadow;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.action-btn-container {
+  margin-top: 1rem;
+}
+
+
+.toggle-btn {
+  border: none;
+  border-radius: 2rem;
+  background-color: transparent;
+  font-size: 25;
+}
+
+.toggle-btn-toggled {
+  border-radius: 2rem;
+  background-color: $aqua-accent;
+}
+
+.lonely-toggle-btn {
+  margin-left: .2rem;
+}
+
+.volume-scale trough {
+  padding: .7rem;
+  border-radius: 3rem;
+  // background-color: $aqua-accent;
+  // background: linear-gradient(to right, $blue-accent, $bg-green);
+  background-color: $crust;
+}
+
+.volume-scale slider {
+  all: unset;
+  padding: .5rem;
+  background-color: transparent;
+  border: none;
+}
+
+.volume-scale highlight {
+  all: unset;
+  padding: .1rem;
+  padding: .5rem;
+  border-radius: 1rem;
+  background: linear-gradient(to right, $blue-accent, $bg-green);
+}
+
+.volume-scale-icon {
+  color: $blue-accent;
+  font-size: 24;
+  margin-top: 1rem;
+}
+
+.brightness-scale-icon {
+  color: $yellow-accent;
+  font-size: 24;
+  margin-top: 1rem;
+}
+
+.brightness-scale trough {
+  padding: .7rem;
+  border-radius: 3rem;
+  // background-color: $aqua-accent;
+  // background: linear-gradient(to right, $orange-accent, $red-accent);
+  background-color: $crust;
+}
+
+.brightness-scale slider {
+  background-color: transparent;
+  color: transparent;
+  all: unset;
+  padding: .4rem;
+}
+
+.brightness-scale highlight {
+  all: unset;
+  padding: .5rem;
+  border-radius: 1rem;
+  background: linear-gradient(to right, $orange-accent, $red-accent);
+}
+
+.stat-val {
+  min-width: 40px;
+}
+
+.stats {
+  margin-top: 1rem;
+}
+
+.stat-title {
+  font-size: 20;
+}
+
+.cpu-title {
+  color: $red-accent;
+}
+
+.memory-title {
+  color: $bg-green;
+}
+
+.battery-title {
+  color: $yellow-accent;
+}
+
+.net-up {
+  color: $orange-accent;
+}
+
+.net-down {
+  color: $blue-accent;
+}
+
+.powerbtn-root {
+  margin-top: 1rem;
+}
+
+.powerbtn {
+  border-radius: 9rem;
+  background-color: $red-accent;
+  color: $bg-dim;
+}

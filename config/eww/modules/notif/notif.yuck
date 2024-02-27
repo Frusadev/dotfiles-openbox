@@ -1,0 +1,193 @@
+(defwidget notification[id title content]
+  (box
+    :class "notification-root"
+    :orientation "h"
+    :space-evenly "false"
+    :width 350
+    (box
+      :class "notification-content-root"
+      :orientation "v"
+      :space-evenly "false"
+      :height 30
+      (box
+        :class "notification-title-root"
+        :orientation "h"
+        :space-evenly "true"
+        :width 310
+        (label
+          :class "notification-sum"
+          :text title
+          :halign "start"
+          :limit-width 20
+        )
+        (box
+          :orientation "h"
+          :space-evenly "true"
+          :halign "end"
+          (button
+            :onclick {openned_not != id ? "python /home/${home}/.config/eww/modules/scripts/notification/open-notification.py open ${id}" : 
+              "python /home/${home}/.config/eww/modules/scripts/notification/open-notification.py ca"
+            }
+            :class "notification-expand-btn"
+            :width 36
+            :height 36
+            :halign "end"
+            :timeout "3s"
+            (label
+              :text ""
+            )
+          )
+        )
+      )
+
+      (revealer
+        :reveal {openned_not == id ? "true" : "false"}
+        :transition "slidedown"
+        :height 2
+        (box
+          :class "notification-body"
+          :width 310
+          :orientation "h"
+          :space-evenly "false"
+          :halign "start"
+          (label
+            :class "notification-body-ctn"
+            :wrap "true"
+            :halign "start"
+            :text content
+            :vexpand "true"
+            :truncate-left "true"
+            :justify "left"
+          )
+        )
+      )
+    )
+  )
+)
+
+(defwidget music-player[]
+  (box
+    :class "music-player"
+    :width {round(screen_width*23/100, 0)}
+    :height 100
+    (box
+      :orientation "v"
+      :space-evenly "false"
+      (box
+        :class "music-info-root"
+        :orientation "v"
+        :space-evenly "false"
+        :spacing 0
+        (label
+          :class "music-title"
+          :halign "center"
+          :text {music_name != "" ? music_name : "No music playing..."}
+          :limit-width 25
+        )
+
+        (label
+          :halign "center"
+          :class "music-artist"
+          :text { artist_name != "Artist: " ? artist_name : "- Unknown -" }
+          ;; :limit-width 20
+        )
+
+        (label
+          :halign "center"
+          :class "music-album"
+          :text { album_name != "*  *" ? album_name : "* Unknown Album *" }
+          :limit-width 20
+        )
+      )
+      (box
+        :class "music-controls"
+        :orientation "h"
+        :halign "center"
+        :space-evenly "false"
+        (button
+          :class "music-control"
+          :onclick "playerctl previous &"
+          (label
+            :class "music-control-icon"
+            :text "󰒮"
+          )
+        )
+        (button
+          :class "music-control"
+          :onclick {music_status == "Stopped" || music_status == "Paused" ? "playerctl play &" : "playerctl pause &"}
+          (label
+            :class "music-control-icon"
+            :text {music_status == "Stopped" || music_status == "Paused" ? "󰐊" : "󰏤"}
+          )
+        )
+        (button
+          :class "music-control"
+          :onclick "playerctl next &"
+          (label
+            :class "music-control-icon"
+            :text "󰒭"
+          )
+        )
+      )
+    )
+  )
+)
+
+(defwindow notif
+  :class "notif"
+  :geometry (geometry
+              :height "20%"
+              :width "28%"
+              :anchor "top center"
+              :y "9%"
+            )
+  (eventbox
+    :onhoverlost "eww close notif &"
+    (box
+      :class "notif-root"
+      :orientation "v"
+      :space-evenly "false"
+      (box
+        :space-evenly "false"
+        :orientation "h"
+        ;; (label :class "notif-title" :text "Notifications")
+        ;; (button :class "notif-cl"
+        ;;   :onclick "dunstctl history-clear &"
+        ;;   (label
+        ;;     :text "󰎟"
+        ;;   )
+        ;; )
+      )
+      (box :orientation "h"
+        :halign "center"
+        :height 100
+        :space-evenly "false"
+        (music-player)
+      )
+      ;; (box
+      ;;   :class "notification-container"
+      ;;   :halign "center"
+      ;;   :width 310
+      ;;   (scroll
+      ;;     :class "notification-scroll"
+      ;;     :hscroll "false"
+      ;;     :vscroll "true"
+      ;;     :width 310
+      ;;     :height 300
+      ;;     (literal
+      ;;       :content notifications_val
+      ;;     )
+      ;;   )
+      ;; )
+      (box
+        :class "visualizer"
+        :orientation "h"
+        :space-evenly "true"
+        (label
+          :class "viz-bar"
+          :text cava
+        )
+      )
+    )
+  )
+)

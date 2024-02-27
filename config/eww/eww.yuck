@@ -1,15 +1,31 @@
-(include "modules/panel/panel.yuck")
 (include "modules/ctpanel/ctpanel.yuck")
-(include "modules/notimu/notimu.yuck")
-(include "modules/edi/edi.yuck")
-(include "modules/notimu/notification.yuck")
+(include "modules/bar/bar.yuck")
+(include "modules/player/player.yuck")
+(include "modules/powermenu/powermenu.yuck")
+(include "modules/notif/notif.yuck")
+(include "modules/notif/notifpanel.yuck")
 
 (defvar screen_width 1366)
 (defvar screen_height 768)
-(defpoll username :interval "20000s"
-  :initial "N/A"
-  `echo $USER | tr '[:lower:]' '[:upper:]'`
-)
+(defvar home "frusadev")
+(defvar action-btn-content "")
+
+;; Action button variables
+(defpoll wifi_toggled :initial "false" :interval "1s" `bash ~/.config/eww/modules/scripts/wifi_check.sh &`)
+(defpoll bluetooth_toggled :initial "false" :interval "1s" `bash ~/.config/eww/modules/scripts/bt_check.sh &`)
+(defpoll hotspot_toggled :initial "false" :interval "1s" `bash ~/.config/eww/modules/scripts/hs_check.sh &`)
+(defpoll planemode_toggled :initial "false" :interval "1s" `bash ~/.config/eww/modules/scripts/airplane_check.sh &`)
+(defvar night_light_toggled "false")
+;; (defpoll wifi_list :initial "" :interval "2s" `bash ~/.config/eww/modules/scripts/wifi_list.sh &`)
+(defvar bt_list "")
+(defvar dialog_openned "false")
+
+
+(defvar logo "assets/Logo.png")
+;; (defpoll username :interval "20000s"
+;;   :initial "N/A"
+;;   `echo $USER | tr '[:lower:]' '[:upper:]'`
+;; )
 
 (deflisten cava
   :interval "1s"
@@ -17,7 +33,7 @@
   `bash ~/.config/eww/modules/scripts/cava.sh`
 )
 
-(defpoll notifications_val :interval "1s"
+(defpoll notifications_val :interval "90s"
   :initial "No notifications"
   `python /home/frusadev/.config/eww/modules/scripts/notification/list.py &`
 )
@@ -37,6 +53,11 @@
   `acpi -b | awk -F ', ' '{print $2}' | awk -F ' ' '{print $1}' | tr -d '%'`
 )
 
+(defpoll openned_not :interval "200ms"
+  :initial "none"
+  `python /home/frusadev/.config/eww/modules/scripts/notification/open-notification.py get &`
+)
+
 (defpoll battery_status_cmd
   :initial "nc"
   :interval "1s"
@@ -51,10 +72,10 @@
   `date "+%B %d, %Y"`
 )
 
-(defpoll wifi_name :interval "10s"
-  :initial "Disconnected"
-  `bash modules/scripts/wifi_ssid.bash`
-)
+;; (defpoll wifi_name :interval "10s"
+;;   :initial "Disconnected"
+;;   `bash modules/scripts/wifi_ssid.bash`
+;; )
 
 (defpoll brightness_value :interval "2s"
   `brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%' &`
@@ -67,19 +88,19 @@
 (defpoll music_name
   :interval "1s"
   :initial "No music playing..."
-  `playerctl metadata title | awk '{ gsub(".*/", "", $0); if (length($0) > 30) print substr($0, 1, 30) "..."; else print $0 }'`
+  `playerctl metadata title &`
 )
 
 (defpoll artist_name
   :interval "1s"
-  :initial "Artist: Unknown"
-  `echo "Artist: $(playerctl metadata artist)"`
+  :initial "- Unknown -"
+  `echo "- $(playerctl metadata artist) -"`
 )
 
 (defpoll album_name
   :interval "1s"
-  :initial "Album: Unknown"
-  `echo "Album: $(playerctl metadata album)"`
+  :initial "* Unknown *"
+  `echo "* $(playerctl metadata album) *"`
 )
 
 (defpoll music_status

@@ -1,0 +1,33 @@
+(defwindow npanel
+  :geometry (geometry
+              :height "87%"
+              :width "30%"
+              :anchor "top left"
+              :y "10%"
+              :x "2%"
+  )
+  :class "npanel"
+  (eventbox
+    :onhoverlost "eww close npanel &"
+    (box
+      :orientation "v"
+      :space-align "false"
+      :class "npanel-root"
+      (box
+        :class "notification-container"
+        :halign "center"
+        :width 310
+        (scroll
+          :class "notification-scroll"
+          :hscroll "false"
+          :vscroll "true"
+          :width 310
+          :height 300
+          (literal
+            :content notifications_val
+          )
+        )
+      )
+    )
+  )
+)

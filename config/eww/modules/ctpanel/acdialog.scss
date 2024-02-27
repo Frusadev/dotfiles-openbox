@@ -1,0 +1,57 @@
+$bg-dim: #1e1e2e;
+$bg-0: #313244;
+$bg-red-dark: #f38ba8;
+$red-accent: #eba0ac;
+$fg: #cdd6f4;
+$orange-accent: #fab387;
+$yellow-accent: #f9e2af;
+$aqua-accent: #89b4fa;
+$gray-2: #9399b2;
+$purple-accent: #45475a;
+$gray-1: #A6B0A4;
+$bg-2: #585b70;
+$bg-green: #a6e3a1;
+$blue-accent: #74c7ec;
+$shadow: rgba(0, 0, 0, 0.60);
+$main-font: "MartianMono Nerd Font";
+
+.acdialog {
+  background-color: transparent;
+}
+
+.acdialog-root {
+  background-color: transparent;
+}
+
+.acdialog-ctn {
+  background-color: $bg-dim;
+  border-radius: 1.5rem;
+  margin: 2rem;
+  box-shadow: 0 0 .8rem .8rem $shadow;
+}
+
+.acdialog-title {
+  border-bottom: 1px solid $bg-0;
+}
+
+.dialog-title {
+  font-size: 15;
+  font-weight: bold;
+  padding-left: 1rem;
+  font-family: "MartianMono Nerd Font";
+}
+
+.dialog-close {
+  margin-left: 8rem;
+  margin-top: .7rem;
+  border-radius: 2rem;
+  background: transparent;
+  font-size: 17;
+}
+
+.wifi-element-root {
+  button {
+    border-radius: 0;
+    background: transparent;
+  }
+}

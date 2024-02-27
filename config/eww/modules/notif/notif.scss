@@ -1,0 +1,144 @@
+@import "./npanel.scss";
+
+$main-font: "MartianMono Nerd Font";
+
+.notif {
+  background: transparent;
+  margin-left: 2rem;
+  margin-right: 2rem;
+
+  .notif-root {
+    margin: 1rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 0 .3rem .1rem $shadow;
+    background: $bg-dim;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+
+    .notif-title {
+      font-size: 20;
+      font-weight: bold;
+      font-family: "Verdana";
+      margin-left: 1rem;
+      margin-top: .5rem;
+    }
+  }
+}
+
+.music-player {
+  border-radius: 1.5rem;
+  background-color: $bg-0;
+  margin-top: 1rem;
+  .music-info-root {
+    .music-title {
+      font-size: 17;
+      font-weight: bold;
+      color: $fg;
+      margin-top: 1rem;
+    }
+    .music-artist {
+      font-size: 10;
+      font-weight: bold;
+      font-family: $main-font;
+      color: $fg;
+      margin-top: 1.5rem;
+    }
+    .music-album {
+      font-size: 10;
+      font-weight: bold;
+      font-family: $main-font;
+      color: $fg;
+    }
+  }
+  .music-controls {
+    margin-top: 1rem;
+    button {
+      color: $fg;
+      border-radius: 0;
+      background: transparent;
+    }
+  }
+}
+
+.notification-container {
+  margin-top: 2rem;
+}
+
+.notification-content-root {
+  padding-bottom: .3rem;
+}
+
+.notification-root {
+  border-radius: 1.5rem;
+  background: $bg-0;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  padding: 1rem;
+  box-shadow: 0 0 .3rem .1rem $shadow;
+}
+
+.notification-root:hover {
+  box-shadow: 0 0 .3rem .1rem $shadow;
+  transition-duration: 3s;
+}
+
+.notification-title-root {
+  .notification-sum {
+    margin-left: 1rem;
+    font-weight: bold;
+    font-size: 15;
+  }
+  button {
+    margin-top: .5rem;
+    margin-right: .5rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    font-size: 17;
+  }
+}
+
+.notification-body-ctn {
+  padding: 1rem;
+  font-family: "Varela Round";
+}
+
+.notif-cl {
+  margin-top: .5rem;
+  margin-left: 1rem;
+  background: transparent;
+  border-radius: 1rem;
+}
+
+.notif-cl:active {
+  transition-duration: .3s;
+  background-color: $bg-2;
+}
+
+.notification-scroll {
+  scrollbar {
+    all: unset;
+  }
+  slider {
+    background: transparent;
+  }
+}
+
+.viz-bar {
+  // background-image: linear-gradient(to top, $blue-accent, $bg-green);
+  // margin-top: 2rem;
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+  font-size: 20;
+  letter-spacing: 10px;
+  color: transparent;
+  margin-top: 2rem;
+  text-shadow:
+    1px -2px $red-accent,
+    1.1px 1.1px .3rem $orange-accent,
+    1.2px 1.2px $yellow-accent,
+    1.3px 1.3px .1rem $bg-green,
+    1.4px 1.4px $blue-accent,
+    1.5px 1.5px $bg-2,
+    1.6px 1.6px .3rem $bg-2;
+    border-radius: 20rem;
+}

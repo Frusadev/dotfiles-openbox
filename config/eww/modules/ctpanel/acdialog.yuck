@@ -1,0 +1,77 @@
+(defwidget wifi-element[ssid secure]
+  (box
+    :class "wifi-element-root"
+    :orientation "h"
+    :space-evenly "true"
+    (button
+      :class "wifi-element-btn"
+      (box
+        :orientation "h"
+        :space-evenly "true"
+        :spacing 100
+        (label
+          :class "wifi-ssid"
+          :text ssid
+          :limit-width 16
+          :haling "start"
+          :justify "left"
+        )
+        (label
+          :class "wifi-security-icon"
+          :text {secure == "true" ? "󰌾" : ""}
+        )
+      )
+    )
+  )
+)
+
+(defwindow acdialog_wifi
+  :class "acdialog"
+  :geometry (geometry
+              :height "50%"
+              :width 350
+              :x "70%"
+              :y "30%"
+              :windowtype "dock"
+              :stacking "fg"
+  :wm-ignore "true"
+  )
+  (eventbox
+    :class "acdialog-root"
+    (box 
+      :class "acdialog-ctn"
+      :orientation "v"
+      :space-evenly "false"
+      :spacing 10
+      (box
+        :class "acdialog-title"
+        :orientation "h"
+        :space-evenly "true"
+        (box
+          :orientation "h"
+          :space-evenly "false"
+          (label
+            :class "dialog-title"
+            :text "wifi"
+            :haling "start"
+            :justify "right"
+          )
+        )
+        (box
+          :orientation "h"
+          :space-evenly "false"
+          (button
+            :class "dialog-close"
+            :haling "center"
+            :onclick "eww close acdialog_wifi && eww update dialog_openned='false' &"
+            "󰅙"
+          )
+        )
+      )
+      (scroll
+        :height 200
+        (literal :content wifi_list)
+      )
+    )
+  )
+)
